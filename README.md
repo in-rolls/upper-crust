@@ -1,16 +1,18 @@
 # Caste and community in Indian restaurant names
 
-Some Indian restaurants put caste or community in their name: Brahmin's Veg
-Cafe, Iyer Mess, Gowdru Military Hotel, Sree Gupta Bhavan. This repository
-measures how common that is in three South Indian cities. Among 14,907
-restaurants collected from Google Places and OpenStreetMap in August 2025,
-a confirmed caste or community reference appears in 4.3% of names in
-Bengaluru, 1.4% in Chennai, and 5.7% in Mysuru. Regional and cuisine
-identities (Udupi, Kerala, Punjabi, Mysore-style) are the most common form.
-Explicit upper-caste labels are rare, 0.1% to 0.6%, but not absent: 31
-Bengaluru restaurants carry "Brahmin", "Iyer", "Iyengar", or another
-upper-caste label in the name. Caste-linked surnames (Gowda, Reddy, Shetty,
-Naidu) sit in between.
+Caste shows up in many corners of Indian life, from surnames to matrimonial
+ads. We asked whether it also shows up in commercial branding, where the
+audience is everyone: do restaurants put caste in their names? Mostly, no. Among 14,907 restaurants collected
+from Google Places and OpenStreetMap for Bengaluru, Chennai, and Mysuru in
+August 2025, explicit caste and community labels (Brahmin's Veg Cafe, Iyer
+Mess, Sree Gupta Bhavan) appear in under 1% of names in every city, and
+caste-linked surnames (Gowdru Military Hotel, Reddy's Family Dhaba) in 0.1%
+to 1.1%. Identity reaches meaningful rates only in a softer
+form: regional and cuisine identities (Udupi, Kerala, Punjabi, Mysore-style)
+bring the total with any confirmed caste or community reference to 4.3% in
+Bengaluru, 1.4% in Chennai, and 5.7% in Mysuru. Roughly one urban restaurant
+in twenty brands itself with an identity, and when it does, it names a
+cuisine region far more often than a caste.
 
 Chennai's low figure is partly an artifact of our dictionary, which tilts
 toward Karnataka communities. A model-based screen of unmatched names (below)
@@ -48,11 +50,10 @@ Names in Kannada, Tamil, Telugu, Malayalam, or Devanagari script are
 transliterated to Latin first (IAST via `indic-transliteration`, diacritics
 stripped), which leaves only 10 of 14,907 names unscorable.
 
-An earlier version of this pipeline fuzzy-matched at edit distance 1 and its
-two largest categories were 83% to 97% false positives: "chats" matched Bhat,
-"Sai" matched Pai, "Red Chilly" matched Reddy through a machine-generated
-variant "redy". Treat any edit-distance matching of 3-to-5-letter caste terms
-as broken by default; the false positives outnumber the real matches.
+Matching is exact only: fuzzy matching at edit distance 1 on terms this
+short mostly manufactures false positives ("chats" matches Bhat, "Sai"
+matches Pai), so spelling variation is handled by the curated variant lists
+instead.
 
 Every dictionary match was then adjudicated by a local open-weights LLM
 (Qwen3-8B via Ollama, temperature 0, so the step re-runs for free). The
@@ -99,6 +100,22 @@ flagged once address matches are dropped), Gowda (27) and Reddy (18) in
 Bengaluru, Gupta (15) and Jain (8) in Chennai, and Brahmin (22 in Bengaluru,
 9 in Mysuru, 0 in Chennai). Per-label counts are in
 `data/analysis_2026_08_30_*_label_counts.csv`.
+
+## Interpretation
+
+The rarity is the finding, and two readings fit it that the design cannot
+separate. Restaurants
+sell to broad publics, so an explicit caste label narrows the market, and
+owners who want to signal identity may reach for regional-cuisine codes that
+carry community lineage without naming it ("Udupi" rather than "Brahmin").
+Or caste may simply not be a salient axis for branding food service in these
+cities. The internal contrast, regional-cuisine branding running four to seven
+times ahead of upper-caste labels in every city, is consistent with the
+first reading but does not establish it.
+
+The rarity is measured, not assumed: every match was verified (address text
+vetoed, every distinct caste-group name inspected), missed names were
+screened for, and the dictionary was frozen before results were inspected.
 
 ## What the numbers rest on
 
