@@ -1,0 +1,13 @@
+{
+  "region_id": "maa",
+  "cells_covered": 200,
+  "queries_attempted": 400,
+  "requests_made": 808,
+  "pages_seen": 408,
+  "languages": [
+    "kn",
+    "en"
+  ],
+  "errors": [],
+  "region_name": "Chennai"
+}
