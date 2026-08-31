@@ -129,16 +129,20 @@ castes were ranked in part by whose cooked food they would accept (Marriott
 vegetarian restaurants easing hesitant diners into eating out (Conlon
 1995). We hand-coded 83 eating houses from the digitized Asylum Press
 directories of Madras and Southern India, 1918 to 1928
-(`data/historical/eating_houses_1918_1928.csv`, each entry traceable to its
-OCR line). On 1920s signboards the purity language was religious and
-dietary, not caste: the complete Madras list of 1925 (33 establishments)
-has five "Hindu Restaurant" labels, one "Military" hotel (the era's
-non-vegetarian marker), seven Vilas/Bhavan names, and no caste label, and
-explicit caste appears twice in all 83 entries (M. Sankara Iyer's hotel,
-Madras 1918; Brahmin Bakery, Salem 1925). Caste on the signboard was about
-as rare a century ago as it is now. What changed is the axis: the Hindu and
-Military purity labels have disappeared, and regional-cuisine identity has
-taken their place.
+(`data/historical/eating_houses_1918_1928.csv`, each entry coded by segment
+and traceable to its OCR line). The right base for comparison is Indian-run
+eating houses, since the directories' European hotels could not have
+caste-branded in the first place. On that base, identity branding was the
+norm, not the exception: of the 18 Indian establishments in the complete
+Madras list of 1925, 15 carry an identity or purity marker, including five
+"Hindu Restaurant" labels, seven Vilas/Bhavan names, one Arya and one
+"Military" (non-vegetarian) hotel. Against today's 3 to 7%, identity
+branding has fallen by an order of magnitude. What was rare in both eras is
+the caste word itself: none of those 18 names carries one, and the whole
+corpus has two (M. Sankara Iyer's hotel, Madras 1918; Brahmin Bakery, Salem
+1925). The purity signal has always ridden on something adjacent to caste,
+religion and diet then, cuisine-region now; what collapsed is how often any
+signal is sent at all.
 
 The rarity is measured, not assumed: every match was verified (address text
 vetoed, every distinct caste-group name inspected), missed names were
