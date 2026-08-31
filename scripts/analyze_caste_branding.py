@@ -170,6 +170,13 @@ TAXONOMY: List[Dict[str, Any]] = [
         "group": "merchant_community",
         "terms": {"gupta": ["gupta", "guptas"]},
     },
+    # v2 (frozen 2026-08-31, before the sampled collections): Tamil and
+    # North Indian communities the FN screen and the FN examples surfaced.
+    {
+        "label": "Chettiar (Tamil merchant)",
+        "group": "merchant_community",
+        "terms": {"chettiar": ["chettiar", "chettiyar", "chetty", "chetti"]},
+    },
     # Regional / cuisine identities
     {
         "label": "Udupi cuisine",
@@ -206,7 +213,13 @@ TAXONOMY: List[Dict[str, Any]] = [
             "malayali": ["malayali", "malayalee"],
             "punjabi": ["punjabi"],
             "gujarati": ["gujarati", "gujrati"],
+            "andhra": ["andhra"],
         },
+    },
+    {
+        "label": "Chettinad cuisine",
+        "group": "regional",
+        "terms": {"chettinad": ["chettinad", "chettinadu"]},
     },
     # Surnames / titles (caste-associated but individually ambiguous)
     {
@@ -237,6 +250,30 @@ TAXONOMY: List[Dict[str, Any]] = [
         "terms": {"reddy": ["reddy", "reddys"]},
     },
     {"label": "Naidu", "group": "surname_title", "terms": {"naidu": ["naidu"]}},
+    {
+        "label": "Tamil caste surnames (Pillai/Mudaliar/Nadar/Gounder/Thevar/Naicker/Pandian)",
+        "group": "surname_title",
+        "terms": {
+            "pillai": ["pillai"],
+            "mudaliar": ["mudaliar", "mudaliyar"],
+            "nadar": ["nadar"],
+            "gounder": ["gounder"],
+            "thevar": ["thevar"],
+            "naicker": ["naicker"],
+            "pandian": ["pandian", "pandiyan"],
+        },
+    },
+    {
+        "label": "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)",
+        "group": "surname_title",
+        "terms": {
+            "yadav": ["yadav", "yadava"],
+            "thakur": ["thakur"],
+            "khatri": ["khatri"],
+            "patel": ["patel"],
+            "patil": ["patil"],
+        },
+    },
     {
         "label": "Naik/Nayak",
         "group": "surname_title",
