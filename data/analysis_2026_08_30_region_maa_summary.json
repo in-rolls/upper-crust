@@ -1,0 +1,96 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2025_08_22_*_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_30"
+    ],
+    "inputs": [
+      "data/restaurants_2025_08_22_blr_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_maa_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_mys_raw_collection.jsonl"
+    ],
+    "git_commit": "39f3e22",
+    "timestamp": "2026-08-31T03:26:05+00:00"
+  },
+  "n_entities": 4962,
+  "n_places": 4493,
+  "n_osm": 506,
+  "n_linked_across_sources": 37,
+  "n_unscorable_after_transliteration": 2,
+  "capture_recapture": {
+    "N_hat": 59958.42105263158,
+    "se": 9195.251793491376,
+    "ci_low": 41935.727537388484,
+    "ci_high": 77981.11456787467,
+    "credible": false,
+    "why_not_credible": "linkage undercounts overlap and capture probabilities are heterogeneous across sources"
+  },
+  "group_counts": {
+    "upper_caste": 7,
+    "regional": 34,
+    "merchant_community": 23,
+    "surname_title": 7
+  },
+  "label_counts": {
+    "Iyer (Tamil Brahmin)": 7,
+    "Other languages": 29,
+    "Jain": 8,
+    "Reddy": 1,
+    "Gupta": 15,
+    "Bhat/Bhatt": 1,
+    "Naidu": 4,
+    "Udupi cuisine": 5,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 1
+  },
+  "term_counts": {
+    "iyer": 7,
+    "kerala": 9,
+    "telugu": 3,
+    "jain": 8,
+    "tamil": 5,
+    "reddy": 1,
+    "gupta": 15,
+    "bhat": 1,
+    "punjabi": 12,
+    "naidu": 4,
+    "udupi": 5,
+    "murthy": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 34,
+      "n": 4962,
+      "p": 0.0068520757758968156,
+      "ci_low": 0.004907632022643036,
+      "ci_high": 0.009559522950644873
+    },
+    {
+      "group": "merchant_community",
+      "count": 23,
+      "n": 4962,
+      "p": 0.004635227730753728,
+      "ci_low": 0.0030907335081156286,
+      "ci_high": 0.00694615530444738
+    },
+    {
+      "group": "upper_caste",
+      "count": 7,
+      "n": 4962,
+      "p": 0.0014107214832728737,
+      "ci_low": 0.0006835199196986454,
+      "ci_high": 0.002909345386355417
+    },
+    {
+      "group": "surname_title",
+      "count": 7,
+      "n": 4962,
+      "p": 0.0014107214832728737,
+      "ci_low": 0.0006835199196986454,
+      "ci_high": 0.002909345386355417
+    }
+  ]
+}

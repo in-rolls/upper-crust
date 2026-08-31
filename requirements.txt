@@ -1,0 +1,9 @@
+# Analysis
+indic-transliteration>=2.3
+
+# Collection (only needed to re-collect data)
+googlemaps>=4.10
+requests>=2.31
+
+# Adjudication runs against a local Ollama server (https://ollama.com),
+# model qwen3:8b — no Python package needed.

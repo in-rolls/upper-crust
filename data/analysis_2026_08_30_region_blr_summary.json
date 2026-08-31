@@ -1,0 +1,127 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2025_08_22_*_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_30"
+    ],
+    "inputs": [
+      "data/restaurants_2025_08_22_blr_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_maa_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_mys_raw_collection.jsonl"
+    ],
+    "git_commit": "39f3e22",
+    "timestamp": "2026-08-31T03:26:05+00:00"
+  },
+  "n_entities": 7770,
+  "n_places": 4884,
+  "n_osm": 2917,
+  "n_linked_across_sources": 31,
+  "n_unscorable_after_transliteration": 8,
+  "capture_recapture": {
+    "N_hat": 445449.9375,
+    "se": 76863.70039829386,
+    "ci_low": 294797.08471934404,
+    "ci_high": 596102.790280656,
+    "credible": false,
+    "why_not_credible": "linkage undercounts overlap and capture probabilities are heterogeneous across sources"
+  },
+  "group_counts": {
+    "surname_title": 82,
+    "regional": 227,
+    "merchant_community": 8,
+    "upper_caste": 31
+  },
+  "label_counts": {
+    "Gowda (often Vokkaliga)": 27,
+    "Udupi cuisine": 132,
+    "Naik/Nayak": 4,
+    "Other languages": 66,
+    "Reddy": 18,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 5,
+    "Naidu": 12,
+    "Shetty (often Bunt)": 2,
+    "Marwari": 1,
+    "Agarwal/Agrawal": 3,
+    "Rao": 3,
+    "Mangalorean / Tulu Nadu": 3,
+    "Gupta": 3,
+    "Brahmin (general)": 22,
+    "Places in KA": 16,
+    "Kodava / Coorg": 10,
+    "Gaud Saraswat / GSB": 1,
+    "Iyer (Tamil Brahmin)": 5,
+    "Iyengar (Tamil Brahmin)": 2,
+    "Kamath": 8,
+    "Pai": 3,
+    "Jain": 1,
+    "Havyaka (Brahmin)": 1
+  },
+  "term_counts": {
+    "gowda": 27,
+    "udupi": 132,
+    "naik": 4,
+    "punjabi": 39,
+    "reddy": 18,
+    "murthy": 2,
+    "naidu": 12,
+    "shetty": 2,
+    "marwari": 1,
+    "agarwal": 3,
+    "rao": 3,
+    "mangalorean": 3,
+    "kerala": 21,
+    "gupta": 3,
+    "gujarati": 2,
+    "brahmin": 22,
+    "mandya": 7,
+    "mysore": 9,
+    "coorg": 10,
+    "sharma": 3,
+    "gsb": 1,
+    "iyer": 5,
+    "iyengar": 2,
+    "kamath": 8,
+    "pai": 3,
+    "jain": 1,
+    "malayali": 1,
+    "havyaka": 1,
+    "telugu": 3
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 227,
+      "n": 7770,
+      "p": 0.029214929214929214,
+      "ci_low": 0.02569664535290966,
+      "ci_high": 0.033198508878172175
+    },
+    {
+      "group": "surname_title",
+      "count": 82,
+      "n": 7770,
+      "p": 0.010553410553410553,
+      "ci_low": 0.008510845491221624,
+      "ci_high": 0.013079715345520921
+    },
+    {
+      "group": "upper_caste",
+      "count": 31,
+      "n": 7770,
+      "p": 0.00398970398970399,
+      "ci_low": 0.002812211764979973,
+      "ci_high": 0.0056574231192708215
+    },
+    {
+      "group": "merchant_community",
+      "count": 8,
+      "n": 7770,
+      "p": 0.0010296010296010295,
+      "ci_low": 0.0005218073276421366,
+      "ci_high": 0.0020305472250927684
+    }
+  ]
+}
