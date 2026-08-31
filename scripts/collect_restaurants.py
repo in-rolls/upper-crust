@@ -130,8 +130,12 @@ def collect_places_for_region(
     places_radius_m: int = 2000,
     places_sleep_s: float = 2.0,
     max_cells: Optional[int] = 200,
+    points: Optional[List[Tuple[float, float]]] = None,
     verbose: bool = False,
 ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    """When ``points`` is given (e.g. sampled road-segment midpoints from
+    geo-sampling), those are the query centers instead of the grid, and
+    max_cells does not apply — the sample is exactly the points passed."""
     meta = {
         "region_id": region.region_id,
         "cells_covered": 0,
@@ -139,6 +143,7 @@ def collect_places_for_region(
         "requests_made": 0,
         "pages_seen": 0,
         "languages": list(languages),
+        "sampling": "points" if points is not None else "grid",
         "errors": [],
     }
     if gmaps_client is None:
@@ -180,12 +185,15 @@ def collect_places_for_region(
                     }
                 )
 
-    for idx, (lat, lon) in enumerate(
-        grid_cells(
+    centers = (
+        points
+        if points is not None
+        else grid_cells(
             region.center_lat, region.center_lon, region.radius_km, region.grid_step_km
         )
-    ):
-        if max_cells is not None and idx >= max_cells:
+    )
+    for idx, (lat, lon) in enumerate(centers):
+        if points is None and max_cells is not None and idx >= max_cells:
             # The 2025-08 Chennai run hit this cap (meta shows exactly 200
             # cells), silently truncating coverage — hence the loud warning.
             msg = f"max_cells={max_cells} reached; grid truncated, coverage incomplete"
@@ -410,6 +418,26 @@ def parse_locations_csv(
     return out
 
 
+def load_points_csv(path: str, limit: int = 0) -> List[Tuple[float, float]]:
+    """Query centers from a CSV: either lat/lon columns, or a geo-sampling
+    segments file (start_lat/start_long/end_lat/end_long -> midpoints)."""
+    points: List[Tuple[float, float]] = []
+    with open(path, encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            if row.get("lat") and row.get("lon"):
+                points.append((float(row["lat"]), float(row["lon"])))
+            elif row.get("start_lat"):
+                points.append(
+                    (
+                        (float(row["start_lat"]) + float(row["end_lat"])) / 2,
+                        (float(row["start_long"]) + float(row["end_long"])) / 2,
+                    )
+                )
+            else:
+                raise ValueError(f"{path}: need lat/lon or start_/end_ columns")
+    return points[:limit] if limit else points
+
+
 def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Collect restaurant names (Google Places + OSM) for one or more regions"
@@ -451,6 +479,21 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
     parser.add_argument("--places-radius-m", type=int, default=2000)
     parser.add_argument("--places-sleep-s", type=float, default=2.0)
     parser.add_argument("--max-cells", type=int, default=200)
+    parser.add_argument(
+        "--points-csv",
+        type=str,
+        default=None,
+        help="query centers from a geo-sampling segments CSV (segment "
+        "midpoints) or any CSV with lat/lon columns; replaces the grid. "
+        "Applies to the single region being collected.",
+    )
+    parser.add_argument(
+        "--sample-points",
+        type=int,
+        default=0,
+        help="use only the first N points of --points-csv (0 = all); the "
+        "CSV should already be a random sample, so a head is a subsample",
+    )
 
     # OSM
     parser.add_argument("--use-overpass", action="store_true")
@@ -526,6 +569,13 @@ def main() -> None:
 
     languages = tuple(args.languages)
 
+    points = None
+    if args.points_csv:
+        if len(regions) > 1:
+            raise SystemExit("--points-csv applies to a single region")
+        points = load_points_csv(args.points_csv, args.sample_points)
+        print(f"Using {len(points)} sampled query centers from {args.points_csv}")
+
     for r in regions:
         raw_all: List[Dict[str, Any]] = []
         if args.use_google_places:
@@ -536,8 +586,12 @@ def main() -> None:
                 places_radius_m=args.places_radius_m,
                 places_sleep_s=args.places_sleep_s,
                 max_cells=args.max_cells,
+                points=points,
                 verbose=args.verbose,
             )
+            if points is not None:
+                meta_p["points_csv"] = args.points_csv
+                meta_p["points_used"] = len(points)
             meta_p.update({"region_name": r.region_name})
             save_meta(meta_p, args.basepath, r.region_id)
             raw_all += raw_p

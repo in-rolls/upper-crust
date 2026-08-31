@@ -7,3 +7,6 @@ requests>=2.31
 
 # Adjudication runs against a local Ollama server (https://ollama.com),
 # model qwen3:8b — no Python package needed.
+
+# Sampling frame
+pyshp>=2.3

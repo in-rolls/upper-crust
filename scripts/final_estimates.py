@@ -66,6 +66,13 @@ def main() -> None:
     parser.add_argument("--adjudication", required=True)
     parser.add_argument("--out", required=True)
     parser.add_argument("--fn-sample", type=int, default=FN_SAMPLE_PER_REGION)
+    parser.add_argument(
+        "--fn-sample-basepath",
+        help="basepath of the run the FN sample was drawn under (defaults to "
+        "--basepath). For a dictionary-v2 rerun, pass the v1 basepath: the "
+        "v1 sample restricted to names v2 leaves unmatched is a uniform "
+        "subsample of v2's unmatched pool, so the FN rate stays valid.",
+    )
     args = parser.parse_args()
 
     verdicts = read_jsonl(args.adjudication)
@@ -130,7 +137,14 @@ def main() -> None:
             )
 
         # False-negative rate from the seeded sample of unmatched entities.
-        sample = rng.sample(unmatched, min(args.fn_sample, len(unmatched)))
+        if args.fn_sample_basepath:
+            src = read_jsonl(f"{args.fn_sample_basepath}_region_{region}_matches.jsonl")
+            src_unmatched = [r for r in src if not r["matches"]]
+            drawn = rng.sample(src_unmatched, min(args.fn_sample, len(src_unmatched)))
+            still_unmatched = {r["name_normalized"] for r in unmatched}
+            sample = [r for r in drawn if r["name_normalized"] in still_unmatched]
+        else:
+            sample = rng.sample(unmatched, min(args.fn_sample, len(unmatched)))
         fn_hits = 0
         for r in sample:
             s = screen.get(f"B:{r['name_normalized']}")

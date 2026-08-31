@@ -1,0 +1,20 @@
+{
+  "city": "Chennai",
+  "gadm": "4.1/IND/level2",
+  "road_types": [
+    "trunk",
+    "primary",
+    "secondary",
+    "tertiary",
+    "unclassified",
+    "residential"
+  ],
+  "segment_m": 500.0,
+  "frame_segments": 24521,
+  "n_sampled": 75,
+  "seed": 42,
+  "radius_m": 500.0,
+  "overpass_archive": "chennai_overpass_roads.json.gz",
+  "overpass_query": "[out:json][timeout:180];\nway[\"highway\"~\"^(trunk|primary|secondary|tertiary|unclassified|residential)$\"](12.95176,80.16965,13.13380,80.30597);\nout geom;",
+  "generated_at": "2026-08-31T07:58:15+00:00"
+}
