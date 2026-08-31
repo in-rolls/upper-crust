@@ -113,6 +113,17 @@ cities. The internal contrast, regional-cuisine branding running four to seven
 times ahead of upper-caste labels in every city, is consistent with the
 first reading but does not establish it.
 
+The classic literature makes the rarity more striking. In the classical
+account the cook's caste was the point: castes were ranked in part by whose
+cooked food they would accept (Marriott 1968), food from Brahmin kitchens
+was acceptable to nearly everyone, and early public dining in Indian cities
+was organized around exactly this, with eating houses sorted by caste and
+region and "Brahmin" or "Udupi Brahmin" on the board serving as a purity
+guarantee that let hesitant middle-class Hindus eat out at all (Conlon
+1995). A century later the label that once did that work survives on 22
+signboards in Bengaluru, while its descendant, Udupi as the name of a
+cuisine rather than a guarantee, is the single largest category in the data.
+
 The rarity is measured, not assumed: every match was verified (address text
 vetoed, every distinct caste-group name inspected), missed names were
 screened for, and the dictionary was frozen before results were inspected.
@@ -189,3 +200,13 @@ Google Places key: see `python scripts/collect_restaurants.py --help`.
 | `data/analysis_2026_08_30_*` | matches, summaries, per-label counts |
 | `data/adjudication_2026_08_30.jsonl` | every LLM verdict |
 | `data/final_estimates_2026_08_30.csv` | the headline table with CIs |
+
+## References
+
+Conlon, Frank F. 1995. "Dining Out in Bombay." In *Consuming Modernity:
+Public Culture in a South Asian World*, ed. Carol A. Breckenridge, 90-127.
+Minneapolis: University of Minnesota Press.
+
+Marriott, McKim. 1968. "Caste Ranking and Food Transactions: A Matrix
+Analysis." In *Structure and Change in Indian Society*, eds. Milton Singer
+and Bernard S. Cohn, 133-171. Chicago: Aldine.
