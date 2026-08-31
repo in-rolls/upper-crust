@@ -242,6 +242,112 @@ def collect_places_for_region(
     return out, meta
 
 
+def collect_places_new_for_region(
+    region: Region,
+    *,
+    api_key: str,
+    languages: Tuple[str, ...],
+    points: List[Tuple[float, float]],
+    places_radius_m: int = 300,
+    places_sleep_s: float = 0.2,
+    verbose: bool = False,
+) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
+    """Places API (New) searchNearby. No pagination: each query returns at
+    most 20 places, so the radius should be small enough that circles rarely
+    hold more; capped_queries in the meta counts the ones that did (those
+    circles are truncated, prominence-first)."""
+    meta = {
+        "region_id": region.region_id,
+        "api": "places_new",
+        "cells_covered": 0,
+        "queries_attempted": 0,
+        "requests_made": 0,
+        "capped_queries": 0,
+        "languages": list(languages),
+        "sampling": "points",
+        "radius_m": places_radius_m,
+        "errors": [],
+    }
+    seen: set = set()
+    out: List[Dict[str, Any]] = []
+    url = "https://places.googleapis.com/v1/places:searchNearby"
+    headers = {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": api_key,
+        "X-Goog-FieldMask": "places.id,places.displayName,places.location",
+    }
+    for idx, (lat, lon) in enumerate(points):
+        meta["cells_covered"] += 1
+        for lang in languages:
+            meta["queries_attempted"] += 1
+            body = {
+                "includedTypes": ["restaurant"],
+                "maxResultCount": 20,
+                "rankPreference": "DISTANCE",
+                "languageCode": lang,
+                "locationRestriction": {
+                    "circle": {
+                        "center": {"latitude": lat, "longitude": lon},
+                        "radius": float(places_radius_m),
+                    }
+                },
+            }
+            try:
+                resp = requests.post(url, json=body, headers=headers, timeout=30)
+                meta["requests_made"] += 1
+                resp.raise_for_status()
+                places = resp.json().get("places", [])
+                if len(places) == 20:
+                    meta["capped_queries"] += 1
+                for p in places:
+                    pid = p.get("id")
+                    nm = ((p.get("displayName") or {}).get("text") or "").strip()
+                    loc = p.get("location") or {}
+                    if pid and nm and pid not in seen:
+                        seen.add(pid)
+                        out.append(
+                            {
+                                "place_id": pid,
+                                "name": nm,
+                                "source": "places",
+                                "lang": lang,
+                                "cell_idx": idx,
+                                "query_center_lat": lat,
+                                "query_center_lon": lon,
+                                "lat": loc.get("latitude"),
+                                "lon": loc.get("longitude"),
+                                "page": 0,
+                                "region_id": region.region_id,
+                                "region_name": region.region_name,
+                                "collected_at": utc_now_iso(),
+                            }
+                        )
+                if verbose:
+                    print(
+                        f"· {region.region_id}: point={idx} lang={lang} "
+                        f"-> {len(places)} places"
+                    )
+                time.sleep(places_sleep_s)
+            except Exception as e:  # pragma: no cover
+                detail = ""
+                try:
+                    detail = resp.text[:200]
+                except Exception:
+                    pass
+                msg = f"PlacesNew error @ point {idx} lang={lang}: {e} {detail}"
+                meta["errors"].append(msg)
+                if verbose:
+                    print("❌", msg)
+                time.sleep(0.7)
+    if verbose:
+        print(
+            f"✅ PlacesNew[{region.region_id}]: {len(out)} unique | "
+            f"points={meta['cells_covered']} requests={meta['requests_made']} "
+            f"capped={meta['capped_queries']}"
+        )
+    return out, meta
+
+
 def collect_overpass_for_region(
     region: Region,
     *,
@@ -488,6 +594,13 @@ def parse_args(argv: Optional[List[str]] = None) -> argparse.Namespace:
         "Applies to the single region being collected.",
     )
     parser.add_argument(
+        "--api",
+        choices=["legacy", "new"],
+        default="legacy",
+        help="'new' uses Places API (New) searchNearby (points mode only; "
+        "20 results/query, no pagination, use a small radius)",
+    )
+    parser.add_argument(
         "--sample-points",
         type=int,
         default=0,
@@ -578,7 +691,23 @@ def main() -> None:
 
     for r in regions:
         raw_all: List[Dict[str, Any]] = []
-        if args.use_google_places:
+        if args.use_google_places and args.api == "new":
+            if points is None:
+                raise SystemExit("--api new requires --points-csv")
+            raw_p, meta_p = collect_places_new_for_region(
+                r,
+                api_key=args.google_api_key,
+                languages=languages,
+                points=points,
+                places_radius_m=args.places_radius_m,
+                verbose=args.verbose,
+            )
+            meta_p["points_csv"] = args.points_csv
+            meta_p["points_used"] = len(points)
+            meta_p.update({"region_name": r.region_name})
+            save_meta(meta_p, args.basepath, r.region_id)
+            raw_all += raw_p
+        elif args.use_google_places:
             raw_p, meta_p = collect_places_for_region(
                 r,
                 gmaps_client=gmaps_client,

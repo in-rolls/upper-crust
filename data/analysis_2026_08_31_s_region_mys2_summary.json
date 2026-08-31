@@ -1,0 +1,93 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl"
+    ],
+    "git_commit": "11fc151",
+    "timestamp": "2026-08-31T09:00:19+00:00"
+  },
+  "n_entities": 904,
+  "n_places": 904,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 0,
+  "capture_recapture": null,
+  "group_counts": {
+    "surname_title": 7,
+    "regional": 66,
+    "upper_caste": 7,
+    "merchant_community": 1
+  },
+  "label_counts": {
+    "Gowda (often Vokkaliga)": 2,
+    "Places in KA": 48,
+    "Brahmin (general)": 4,
+    "Iyengar (Tamil Brahmin)": 3,
+    "Other languages": 2,
+    "Kodava / Coorg": 6,
+    "Udupi cuisine": 10,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 1,
+    "Naidu": 1,
+    "Bhat/Bhatt": 1,
+    "Jain": 1,
+    "Rao": 1,
+    "Naik/Nayak": 1
+  },
+  "term_counts": {
+    "gowda": 2,
+    "mysore": 48,
+    "brahmin": 4,
+    "iyengar": 3,
+    "punjabi": 1,
+    "coorg": 6,
+    "udupi": 10,
+    "patel": 1,
+    "naidu": 1,
+    "bhat": 1,
+    "jain": 1,
+    "rao": 1,
+    "naik": 1,
+    "kerala": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 66,
+      "n": 904,
+      "p": 0.07300884955752213,
+      "ci_low": 0.0577965409608944,
+      "ci_high": 0.09183484847973047
+    },
+    {
+      "group": "surname_title",
+      "count": 7,
+      "n": 904,
+      "p": 0.007743362831858407,
+      "ci_low": 0.003755809316828551,
+      "ci_high": 0.015896958302544693
+    },
+    {
+      "group": "upper_caste",
+      "count": 7,
+      "n": 904,
+      "p": 0.007743362831858407,
+      "ci_low": 0.003755809316828551,
+      "ci_high": 0.015896958302544693
+    },
+    {
+      "group": "merchant_community",
+      "count": 1,
+      "n": 904,
+      "p": 0.0011061946902654867,
+      "ci_low": 0.0001952921972500181,
+      "ci_high": 0.006239310491148486
+    }
+  ]
+}

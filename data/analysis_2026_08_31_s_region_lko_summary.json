@@ -1,0 +1,75 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl"
+    ],
+    "git_commit": "11fc151",
+    "timestamp": "2026-08-31T09:20:41+00:00"
+  },
+  "n_entities": 1855,
+  "n_places": 1855,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 0,
+  "capture_recapture": null,
+  "group_counts": {
+    "merchant_community": 35,
+    "surname_title": 33,
+    "regional": 6
+  },
+  "label_counts": {
+    "Gupta": 27,
+    "Agarwal/Agrawal": 7,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 29,
+    "Other languages": 6,
+    "Jain": 1,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 4
+  },
+  "term_counts": {
+    "gupta": 27,
+    "agarwal": 7,
+    "thakur": 5,
+    "punjabi": 4,
+    "jain": 1,
+    "yadav": 24,
+    "tamil": 1,
+    "andhra": 1,
+    "dixit": 2,
+    "sharma": 2
+  },
+  "group_prevalence": [
+    {
+      "group": "merchant_community",
+      "count": 35,
+      "n": 1855,
+      "p": 0.018867924528301886,
+      "ci_low": 0.013597549600692378,
+      "ci_high": 0.026126975608986587
+    },
+    {
+      "group": "surname_title",
+      "count": 33,
+      "n": 1855,
+      "p": 0.01778975741239892,
+      "ci_low": 0.012694974293572943,
+      "ci_high": 0.024877673101449845
+    },
+    {
+      "group": "regional",
+      "count": 6,
+      "n": 1855,
+      "p": 0.003234501347708895,
+      "ci_low": 0.0014831980236395654,
+      "ci_high": 0.007039098873524776
+    }
+  ]
+}

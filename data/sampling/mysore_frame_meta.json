@@ -1,0 +1,20 @@
+{
+  "city": "Mysore",
+  "gadm": "4.1/IND/level2",
+  "road_types": [
+    "trunk",
+    "primary",
+    "secondary",
+    "tertiary",
+    "unclassified",
+    "residential"
+  ],
+  "segment_m": 500.0,
+  "frame_segments": 50033,
+  "n_sampled": 400,
+  "seed": 42,
+  "radius_m": 300.0,
+  "overpass_archive": "mysore_overpass_roads.json.gz",
+  "overpass_query": "[out:json][timeout:180];\nway[\"highway\"~\"^(trunk|primary|secondary|tertiary|unclassified|residential)$\"](11.73050,75.90680,12.64964,77.12579);\nout geom;",
+  "generated_at": "2026-08-31T08:51:35+00:00"
+}

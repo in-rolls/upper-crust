@@ -28,6 +28,7 @@ import gzip
 import json
 import math
 import random
+import time
 import urllib.parse
 import urllib.request
 import zipfile
@@ -104,18 +105,57 @@ def fetch_roads(polygon, archive_path: Path):
             return json.load(f), None
     lats = [p[0] for p in polygon]
     lons = [p[1] for p in polygon]
-    bbox = f"{min(lats):.5f},{min(lons):.5f},{max(lats):.5f},{max(lons):.5f}"
     types = "|".join(ROAD_TYPES)
-    query = f"""[out:json][timeout:180];
-way["highway"~"^({types})$"]({bbox});
-out geom;"""
-    print(f"querying Overpass bbox {bbox}...")
-    body = urllib.parse.urlencode({"data": query}).encode()
-    req = urllib.request.Request(
-        OVERPASS_URL, data=body, headers={"User-Agent": "upper-crust-sampling/1.0"}
-    )
-    with urllib.request.urlopen(req, timeout=300) as resp:
-        data = json.load(resp)
+    mirrors = [
+        OVERPASS_URL,
+        "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+    ]
+
+    def query_bbox(s_, w_, n_, e_):
+        q = (
+            f"[out:json][timeout:600];\n"
+            f'way["highway"~"^({types})$"]({s_:.5f},{w_:.5f},{n_:.5f},{e_:.5f});\n'
+            f"out geom;"
+        )
+        body = urllib.parse.urlencode({"data": q}).encode()
+        for url in mirrors:
+            try:
+                req = urllib.request.Request(
+                    url, data=body, headers={"User-Agent": "upper-crust-sampling/1.0"}
+                )
+                with urllib.request.urlopen(req, timeout=660) as resp:
+                    return json.load(resp)
+            except Exception as e:
+                print(f"  {url} failed for sub-bbox: {e}")
+                time.sleep(20)
+        return None
+
+    s_, w_, n_, e_ = min(lats), min(lons), max(lats), max(lons)
+    print(f"querying Overpass bbox {s_:.3f},{w_:.3f},{n_:.3f},{e_:.3f}...")
+    data = query_bbox(s_, w_, n_, e_)
+    if data is None:
+        # Big districts overload the public servers; four quadrant queries
+        # merged by way id are equivalent and much lighter each.
+        print("  full bbox failed; splitting into quadrants")
+        mid_lat, mid_lon = (s_ + n_) / 2, (w_ + e_) / 2
+        elements, seen_ways = [], set()
+        for qs, qw, qn, qe in [
+            (s_, w_, mid_lat, mid_lon),
+            (s_, mid_lon, mid_lat, e_),
+            (mid_lat, w_, n_, mid_lon),
+            (mid_lat, mid_lon, n_, e_),
+        ]:
+            sub = query_bbox(qs, qw, qn, qe)
+            if sub is None:
+                raise SystemExit("all Overpass attempts failed, even quadrants")
+            for el in sub.get("elements", []):
+                if el["id"] not in seen_ways:
+                    seen_ways.add(el["id"])
+                    elements.append(el)
+            time.sleep(15)
+        data = {"elements": elements}
+    query = f"bbox+quadrant fallback, types ^({types})$, timeout 600"
     with gzip.open(archive_path, "wt", encoding="utf-8") as f:
         json.dump(data, f)
     return data, query
@@ -204,8 +244,12 @@ def main() -> None:
         s["segment_id"] = i
     print(f"frame: {len(segments)} segments of ~{SEGMENT_M:.0f} m inside boundary")
 
+    # Permutation design: shuffle once, take the first n. Any larger n with
+    # the same seed nests the smaller sample, so tranches extend cleanly.
     rng = random.Random(args.seed)
-    sample = rng.sample(segments, min(args.n, len(segments)))
+    order = list(range(len(segments)))
+    rng.shuffle(order)
+    sample = [segments[i] for i in order[: min(args.n, len(segments))]]
 
     # Local frame density at each sampled midpoint, for inclusion weights.
     mids = [
