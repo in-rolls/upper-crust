@@ -1,0 +1,121 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2025_08_22_*_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_v2"
+    ],
+    "inputs": [
+      "data/restaurants_2025_08_22_blr_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_maa_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_mys_raw_collection.jsonl"
+    ],
+    "git_commit": "b99193d",
+    "timestamp": "2026-08-31T07:50:52+00:00"
+  },
+  "n_entities": 2175,
+  "n_places": 2028,
+  "n_osm": 164,
+  "n_linked_across_sources": 17,
+  "n_unscorable_after_transliteration": 0,
+  "capture_recapture": {
+    "N_hat": 18598.166666666668,
+    "se": 4009.5754731824413,
+    "ci_low": 10739.398739229084,
+    "ci_high": 26456.934594104252,
+    "credible": false,
+    "why_not_credible": "linkage undercounts overlap and capture probabilities are heterogeneous across sources"
+  },
+  "group_counts": {
+    "regional": 145,
+    "upper_caste": 14,
+    "surname_title": 20,
+    "merchant_community": 5
+  },
+  "label_counts": {
+    "Places in KA": 103,
+    "Iyengar (Tamil Brahmin)": 3,
+    "Other languages": 19,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 4,
+    "Brahmin (general)": 9,
+    "Udupi cuisine": 23,
+    "Bhat/Bhatt": 1,
+    "Gupta": 1,
+    "Gaud Saraswat / GSB": 1,
+    "Shetty (often Bunt)": 2,
+    "Gowda (often Vokkaliga)": 7,
+    "Chettinad cuisine": 1,
+    "Jain": 2,
+    "Kamath": 3,
+    "Kodava / Coorg": 3,
+    "Mangalorean / Tulu Nadu": 1,
+    "Agarwal/Agrawal": 1,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 1,
+    "Rao": 1,
+    "Marwari": 1,
+    "Pai": 1,
+    "Madhva / Dvaita (Brahmin)": 1
+  },
+  "term_counts": {
+    "mysore": 103,
+    "iyengar": 3,
+    "kerala": 13,
+    "patel": 4,
+    "brahmin": 9,
+    "udupi": 23,
+    "bhat": 1,
+    "gupta": 1,
+    "gsb": 1,
+    "shetty": 2,
+    "gowda": 7,
+    "chettinad": 1,
+    "andhra": 5,
+    "jain": 2,
+    "kamath": 3,
+    "coorg": 3,
+    "mangalorean": 1,
+    "agarwal": 1,
+    "sharma": 1,
+    "rao": 1,
+    "punjabi": 1,
+    "marwari": 1,
+    "pai": 1,
+    "madhva": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 145,
+      "n": 2175,
+      "p": 0.06666666666666667,
+      "ci_low": 0.056928781885191355,
+      "ci_high": 0.0779326050095696
+    },
+    {
+      "group": "surname_title",
+      "count": 20,
+      "n": 2175,
+      "p": 0.009195402298850575,
+      "ci_low": 0.005960450491560609,
+      "ci_high": 0.014161067291099684
+    },
+    {
+      "group": "upper_caste",
+      "count": 14,
+      "n": 2175,
+      "p": 0.006436781609195402,
+      "ci_low": 0.0038381157759523276,
+      "ci_high": 0.01077588828932713
+    },
+    {
+      "group": "merchant_community",
+      "count": 5,
+      "n": 2175,
+      "p": 0.0022988505747126436,
+      "ci_low": 0.0009823044357325553,
+      "ci_high": 0.005370429053475656
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2025_08_22_*_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_v2"
+    ],
+    "inputs": [
+      "data/restaurants_2025_08_22_blr_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_maa_raw_collection.jsonl",
+      "data/restaurants_2025_08_22_mys_raw_collection.jsonl"
+    ],
+    "git_commit": "b99193d",
+    "timestamp": "2026-08-31T07:50:52+00:00"
+  },
+  "n_entities": 4962,
+  "n_places": 4493,
+  "n_osm": 506,
+  "n_linked_across_sources": 37,
+  "n_unscorable_after_transliteration": 2,
+  "capture_recapture": {
+    "N_hat": 59958.42105263158,
+    "se": 9195.251793491376,
+    "ci_low": 41935.727537388484,
+    "ci_high": 77981.11456787467,
+    "credible": false,
+    "why_not_credible": "linkage undercounts overlap and capture probabilities are heterogeneous across sources"
+  },
+  "group_counts": {
+    "regional": 113,
+    "upper_caste": 7,
+    "surname_title": 23,
+    "merchant_community": 23
+  },
+  "label_counts": {
+    "Chettinad cuisine": 50,
+    "Iyer (Tamil Brahmin)": 7,
+    "Tamil caste surnames (Pillai/Mudaliar/Nadar/Gounder/Thevar/Naicker/Pandian)": 13,
+    "Other languages": 58,
+    "Jain": 8,
+    "Reddy": 1,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 3,
+    "Gupta": 15,
+    "Bhat/Bhatt": 1,
+    "Naidu": 4,
+    "Udupi cuisine": 5,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 1
+  },
+  "term_counts": {
+    "chettinad": 50,
+    "iyer": 7,
+    "pandian": 12,
+    "kerala": 9,
+    "telugu": 3,
+    "andhra": 29,
+    "jain": 8,
+    "tamil": 5,
+    "reddy": 1,
+    "yadav": 3,
+    "gupta": 15,
+    "bhat": 1,
+    "punjabi": 12,
+    "naidu": 4,
+    "udupi": 5,
+    "murthy": 1,
+    "thevar": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 113,
+      "n": 4962,
+      "p": 0.022773075372833535,
+      "ci_low": 0.018976631927876356,
+      "ci_high": 0.027307889108799475
+    },
+    {
+      "group": "surname_title",
+      "count": 23,
+      "n": 4962,
+      "p": 0.004635227730753728,
+      "ci_low": 0.0030907335081156286,
+      "ci_high": 0.00694615530444738
+    },
+    {
+      "group": "merchant_community",
+      "count": 23,
+      "n": 4962,
+      "p": 0.004635227730753728,
+      "ci_low": 0.0030907335081156286,
+      "ci_high": 0.00694615530444738
+    },
+    {
+      "group": "upper_caste",
+      "count": 7,
+      "n": 4962,
+      "p": 0.0014107214832728737,
+      "ci_low": 0.0006835199196986454,
+      "ci_high": 0.002909345386355417
+    }
+  ]
+}

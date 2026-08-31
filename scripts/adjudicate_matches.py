@@ -135,7 +135,12 @@ def run_batches(
         prompt = template.format(city=CITY.get(region, region), items="\n".join(lines))
         try:
             parsed = ollama_chat(prompt)
-            answers = {a.get("id"): a for a in parsed.get("answers", [])}
+            answers = {}
+            for a in parsed.get("answers", []):
+                try:
+                    answers[int(a.get("id"))] = a
+                except (TypeError, ValueError):
+                    continue
         except Exception as e:  # keep going; unanswered items retry on re-run
             print(f"  batch failed ({e}); will retry on next run", file=sys.stderr)
             continue

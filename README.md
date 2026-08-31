@@ -6,19 +6,22 @@ audience is everyone: do restaurants put caste in their names? Mostly, no. Among
 from Google Places and OpenStreetMap for Bengaluru, Chennai, and Mysuru in
 August 2025, explicit caste and community labels (Brahmin's Veg Cafe, Iyer
 Mess, Sree Gupta Bhavan) appear in under 1% of names in every city, and
-caste-linked surnames (Gowdru Military Hotel, Reddy's Family Dhaba) in 0.1%
+caste-linked surnames (Gowdru Military Hotel, Reddy's Family Dhaba) in 0.5%
 to 1.1%. Identity reaches meaningful rates only in a softer
-form: regional and cuisine identities (Udupi, Kerala, Punjabi, Mysore-style)
-bring the total with any confirmed caste or community reference to 4.3% in
-Bengaluru, 1.4% in Chennai, and 5.7% in Mysuru. Roughly one urban restaurant
-in twenty brands itself with an identity, and when it does, it names a
-cuisine region far more often than a caste.
+form: regional and cuisine identities (Udupi, Andhra, Chettinad, Punjabi)
+bring the total with any confirmed caste or community reference to 5.3% in
+Bengaluru, 3.2% in Chennai, and 6.2% in Mysuru. Somewhere between one urban
+restaurant in sixteen and one in thirty brands itself with an identity, and
+when it does, it names a cuisine region far more often than a caste.
 
-Chennai's low figure is partly an artifact of our dictionary, which tilts
-toward Karnataka communities. A model-based screen of unmatched names (below)
-found about 2% of Chennai's names carry references the dictionary lacks,
-mostly Chettinad cuisine and Tamil surnames such as Pandian; the corrected
-any-reference rate for Chennai is roughly 3.3%.
+Dictionaries tilt, and we caught ours tilting. The first term list leaned
+toward Karnataka communities and put Chennai at 1.4%; a model-based screen
+of unmatched names estimated that missed terms, mostly Chettinad and Tamil
+surnames such as Pandian, would raise it to about 3.3%. Adding those terms
+(dictionary v2, frozen before results were seen) and measuring directly
+gives 3.2%: the correction predicted the remeasurement almost exactly.
+Chettinad alone is Chennai's single largest identity term, with 50
+restaurants.
 
 ## Data
 
@@ -40,12 +43,16 @@ where the original file survives.
 
 ## Method
 
-Matching is exact word-boundary regex over a fixed dictionary of 31 labels in
+Matching is exact word-boundary regex over a fixed dictionary of 35 labels in
 four groups: upper-caste labels (Brahmin, Iyer, Iyengar, GSB, ...), merchant
 communities (Jain, Marwari, Agarwal, Gupta, ...), regional or cuisine
 identities (Udupi, Coorg, Kerala, Punjabi, Mysore, ...), and caste-linked
 surnames (Gowda, Shetty, Reddy, Naidu, Bhat, ...). Each label carries
 hand-curated spelling variants only (bhat/bhatt, kamath/kamat, udupi/udipi).
+The dictionary has two frozen versions: v1, and v2, which adds the terms
+v1's miss-screen surfaced (Chettiar/Chettinad, Andhra, Tamil and North
+Indian caste surnames) and was frozen before its results were seen. The
+numbers below are v2; both versions' outputs are committed.
 Names in Kannada, Tamil, Telugu, Malayalam, or Devanagari script are
 transliterated to Latin first (IAST via `indic-transliteration`, diacritics
 stripped), which leaves only 10 of 14,907 names unscorable.
@@ -78,28 +85,30 @@ Confirmed misses: 1 in Bengaluru (0.2%), 10 in Chennai (2.0%), 6 in Mysuru
 (1.2%). The Chennai misses are systematic, not noise: four are Chettinad and
 the rest are mostly Tamil surnames (Pandian, Veerasamy). The screen has noise
 of its own in both directions (it counted "Devegowda Circle", which is an
-address, and never flagged Andhra, see below), so read these rates as rough.
+address, and never flagged Andhra even though the dictionary was missing
+it), so read these rates as rough.
 
 ## Results
 
-Share of restaurant names with a confirmed reference, by group and city
-(Wilson 95% CIs in `data/final_estimates_2026_08_30.csv`):
+Share of restaurant names with a confirmed reference, by group and city,
+dictionary v2 (Wilson 95% CIs in `data/final_estimates_2026_08_31_v2.csv`;
+v1 in `data/final_estimates_2026_08_30.csv`):
 
 | Group | Bengaluru (n=7,770) | Chennai (n=4,962) | Mysuru (n=2,175) |
 |---|---|---|---|
-| Regional / cuisine | 2.8% | 0.6% | 4.3% |
-| Caste-linked surname | 1.1% | 0.1% | 0.7% |
+| Regional / cuisine | 3.7% | 2.2% | 4.5% |
+| Caste-linked surname | 1.1% | 0.5% | 0.9% |
 | Upper-caste label | 0.4% | 0.1% | 0.6% |
 | Merchant community | 0.1% | 0.5% | 0.2% |
-| **Any of the above** | **4.3%** | **1.4%** | **5.7%** |
-| Any, corrected for dictionary misses | 4.5% | 3.3% | 6.9% |
+| **Any of the above** | **5.3%** | **3.2%** | **6.2%** |
+| Any, corrected for remaining misses | 5.5% | 4.2% | 6.9% |
 
-Within the groups, the leading labels are Udupi (132 restaurants in
-Bengaluru), Karnataka place names in Mysuru (52 confirmed, down from 103
-flagged once address matches are dropped), Gowda (27) and Reddy (18) in
-Bengaluru, Gupta (15) and Jain (8) in Chennai, and Brahmin (22 in Bengaluru,
-9 in Mysuru, 0 in Chennai). Per-label counts are in
-`data/analysis_2026_08_30_*_label_counts.csv`.
+Within the groups, the leading terms are Udupi (132 restaurants) and Andhra
+(65) in Bengaluru, Chettinad (50) and Andhra (29) in Chennai, Mysore-style
+(52 confirmed, down from 103 flagged once address matches are dropped) and
+Udupi (23) in Mysuru, and among caste terms, Gowda (27 in Bengaluru) and
+Brahmin (22 in Bengaluru, 9 in Mysuru, 0 in Chennai). Per-label counts are
+in `data/analysis_2026_08_31_v2_*_label_counts.csv`.
 
 ## Interpretation
 
@@ -109,7 +118,7 @@ sell to broad publics, so an explicit caste label narrows the market, and
 owners who want to signal identity may reach for regional-cuisine codes that
 carry community lineage without naming it ("Udupi" rather than "Brahmin").
 Or caste may simply not be a salient axis for branding food service in these
-cities. The internal contrast, regional-cuisine branding running four to seven
+cities. The internal contrast, regional-cuisine branding running seven to sixteen
 times ahead of upper-caste labels in every city, is consistent with the
 first reading but does not establish it.
 
@@ -177,18 +186,19 @@ python scripts/reconstruct_raw.py
 # 2. Dictionary matching, dedup, per-region and combined outputs
 python scripts/analyze_caste_branding.py \
     --inputs 'data/restaurants_2025_08_22_*_raw_collection.jsonl' \
-    --basepath data/analysis_2026_08_30
+    --basepath data/analysis_2026_08_31_v2
 
 # 3. LLM adjudication (needs Ollama with qwen3:8b pulled; ~75 min on an M4)
 python scripts/adjudicate_matches.py \
-    --basepath data/analysis_2026_08_30 \
+    --basepath data/analysis_2026_08_31_v2 \
     --out data/adjudication_2026_08_30.jsonl
 
-# 4. Final corrected estimates
+# 4. Final corrected estimates (the FN sample was drawn under v1)
 python scripts/final_estimates.py \
-    --basepath data/analysis_2026_08_30 \
+    --basepath data/analysis_2026_08_31_v2 \
     --adjudication data/adjudication_2026_08_30.jsonl \
-    --out data/final_estimates_2026_08_30.csv
+    --fn-sample-basepath data/analysis_2026_08_30 \
+    --out data/final_estimates_2026_08_31_v2.csv
 ```
 
 Step 3 is checkpointed; re-running resumes. Collecting fresh data needs a
@@ -204,11 +214,13 @@ Google Places key: see `python scripts/collect_restaurants.py --help`.
 | `scripts/adjudicate_matches.py` | LLM verification of matches and screen of non-matches |
 | `scripts/final_estimates.py` | merges verdicts into the corrected estimates |
 | `data/restaurants_2025_08_22_*` | raw collections and collection meta |
-| `data/analysis_2026_08_30_*` | matches, summaries, per-label counts |
+| `data/analysis_2026_08_31_v2_*` | matches, summaries, per-label counts (v1: `..._2026_08_30_*`) |
 | `data/adjudication_2026_08_30.jsonl` | every LLM verdict |
-| `data/final_estimates_2026_08_30.csv` | the headline table with CIs |
+| `data/final_estimates_2026_08_31_v2.csv` | the headline table with CIs (v1: `..._2026_08_30.csv`) |
 | `scripts/historical_directories.py` | fetches 1918-1928 directories, extracts hotel sections |
 | `data/historical/eating_houses_1918_1928.csv` | hand-coded historical eating houses |
+| `scripts/sample_frame.py` | reproducible street-segment sampling frame for new collections |
+| `data/sampling/` | Chennai frame (24,521 segments), n=75 seed-42 sample, frozen OSM archive |
 
 ## References
 
