@@ -144,6 +144,43 @@ The rarity is measured, not assumed: every match was verified (address text
 vetoed, every distinct caste-group name inspected), missed names were
 screened for, and the dictionary was frozen before results were inspected.
 
+## A sampled replication, and two North Indian cities
+
+The 2025 collections are grid sweeps with prominence-ranked results and, in
+Chennai's case, a truncated grid. To check that none of the findings depend
+on that design, we re-measured with a probability sample: 400 street
+segments per city drawn at random (seed 42) from all OSM roads inside each
+district's GADM boundary, one Places API (New) query per segment midpoint
+(300 m radius, nearest-first), restaurants clustered by segment for
+bootstrap CIs, and inclusion weights from local street density
+(`scripts/sample_frame.py`; frames and raw OSM archives committed). The
+whole five-city collection cost nothing: about 3,300 calls against the
+5,000 free monthly Nearby Search calls.
+
+The replication agrees with the grid: sampled Bengaluru 5.0% any-reference
+versus 5.3% on the grid, sampled Chennai 3.0% versus 3.2%. Weighting for
+street density moves no estimate by more than 0.2 points, so the simple
+shares stand.
+
+Share of names with a confirmed reference, sampled collections (cluster
+bootstrap 95% CIs in `data/sampled_estimates_*.csv`; district estimand):
+
+| City (district) | n | Any | Regional | Surname | Merchant | Upper-caste |
+|---|---|---|---|---|---|---|
+| Bengaluru | 3,447 | 5.0% | 2.8% | 1.8% | 0.2% | 0.2% |
+| Chennai | 5,025 | 3.0% | 2.5% | 0.4% | 0.2% | 0.04% |
+| Mysuru | 904 | 7.6% | 6.2% | 0.8% | 0.1% | 0.8% |
+| Lucknow | 1,855 | 4.0% | 0.3% | 1.8% | 1.9% | 0 |
+| Jaipur | 1,771 | 3.3% | 0.6% | 1.8% | 1.0% | 0 |
+
+The North differs in kind, not amount. Jaipur's and Lucknow's totals sit in
+the southern range, but the composition flips: caste-linked surnames and
+merchant communities (Sharma, Yadav, Gupta, Agarwal) carry the branding,
+regional-cuisine identity is marginal, and explicit upper-caste labels are
+absent. In the South identity rides on cuisine regions; in the North it
+rides on the owner's name. The Udupi story of purity-turned-cuisine is a
+southern story.
+
 ## What the numbers rest on
 
 The denominator is restaurants visible on two platforms, not all
@@ -153,6 +190,11 @@ collection meta shows the cap was hit). OSM is volunteer coverage. A
 capture-recapture estimate of the true restaurant count is computed but not
 credible (the two sources overlap too little and match too imperfectly for
 Chapman's assumptions), so the observed union is the denominator throughout.
+
+The sampled collections use district boundaries, so sampled Mysuru
+includes rural talukas and is a smaller, different universe from the 15 km
+city circle. And the Places restaurant type is loose in India (tea stalls
+and the odd non-restaurant appear), diluting every denominator equally.
 
 Chennai is measured worse than the other two cities. The collector queried
 in Kannada and English but never Tamil, its OSM pull is six times thinner
@@ -201,8 +243,11 @@ python scripts/final_estimates.py \
     --out data/final_estimates_2026_08_31_v2.csv
 ```
 
-Step 3 is checkpointed; re-running resumes. Collecting fresh data needs a
-Google Places key: see `python scripts/collect_restaurants.py --help`.
+Step 3 is checkpointed; re-running resumes. For the sampled collections:
+`scripts/sample_frame.py --city <GADM name> --n 400 --seed 42` builds the
+frame, `scripts/collect_restaurants.py --api new --points-csv ...` collects
+(needs GOOGLE_API_KEY), and `scripts/sampled_estimates.py` produces the
+bootstrap table.
 
 ## Files
 
@@ -219,8 +264,11 @@ Google Places key: see `python scripts/collect_restaurants.py --help`.
 | `data/final_estimates_2026_08_31_v2.csv` | the headline table with CIs (v1: `..._2026_08_30.csv`) |
 | `scripts/historical_directories.py` | fetches 1918-1928 directories, extracts hotel sections |
 | `data/historical/eating_houses_1918_1928.csv` | hand-coded historical eating houses |
-| `scripts/sample_frame.py` | reproducible street-segment sampling frame for new collections |
-| `data/sampling/` | Chennai frame (24,521 segments), n=75 seed-42 sample, frozen OSM archive |
+| `scripts/sample_frame.py` | reproducible street-segment sampling frame |
+| `scripts/sampled_estimates.py` | cluster-bootstrap estimates for sampled collections |
+| `data/sampling/` | five city frames, seed-42 samples, frozen OSM archives |
+| `data/restaurants_2026_08_31_*` | sampled collections (five cities) |
+| `data/sampled_estimates_*.csv` | sampled-collection estimates with bootstrap CIs |
 
 ## References
 
