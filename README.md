@@ -113,16 +113,23 @@ cities. The internal contrast, regional-cuisine branding running four to seven
 times ahead of upper-caste labels in every city, is consistent with the
 first reading but does not establish it.
 
-The classic literature makes the rarity more striking. In the classical
-account the cook's caste was the point: castes were ranked in part by whose
-cooked food they would accept (Marriott 1968), food from Brahmin kitchens
-was acceptable to nearly everyone, and early public dining in Indian cities
-was organized around exactly this, with eating houses sorted by caste and
-region and "Brahmin" or "Udupi Brahmin" on the board serving as a purity
-guarantee that let hesitant middle-class Hindus eat out at all (Conlon
-1995). A century later the label that once did that work survives on 22
-signboards in Bengaluru, while its descendant, Udupi as the name of a
-cuisine rather than a guarantee, is the single largest category in the data.
+The classic literature sharpens the question, and the era's own records
+answer part of it. In the classical account the cook's caste was the point:
+castes were ranked in part by whose cooked food they would accept (Marriott
+1968), and early public dining was organized around purity, with "pure"
+vegetarian restaurants easing hesitant diners into eating out (Conlon
+1995). We hand-coded 83 eating houses from the digitized Asylum Press
+directories of Madras and Southern India, 1918 to 1928
+(`data/historical/eating_houses_1918_1928.csv`, each entry traceable to its
+OCR line). On 1920s signboards the purity language was religious and
+dietary, not caste: the complete Madras list of 1925 (33 establishments)
+has five "Hindu Restaurant" labels, one "Military" hotel (the era's
+non-vegetarian marker), seven Vilas/Bhavan names, and no caste label, and
+explicit caste appears twice in all 83 entries (M. Sankara Iyer's hotel,
+Madras 1918; Brahmin Bakery, Salem 1925). Caste on the signboard was about
+as rare a century ago as it is now. What changed is the axis: the Hindu and
+Military purity labels have disappeared, and regional-cuisine identity has
+taken their place.
 
 The rarity is measured, not assumed: every match was verified (address text
 vetoed, every distinct caste-group name inspected), missed names were
@@ -200,6 +207,8 @@ Google Places key: see `python scripts/collect_restaurants.py --help`.
 | `data/analysis_2026_08_30_*` | matches, summaries, per-label counts |
 | `data/adjudication_2026_08_30.jsonl` | every LLM verdict |
 | `data/final_estimates_2026_08_30.csv` | the headline table with CIs |
+| `scripts/historical_directories.py` | fetches 1918-1928 directories, extracts hotel sections |
+| `data/historical/eating_houses_1918_1928.csv` | hand-coded historical eating houses |
 
 ## References
 
