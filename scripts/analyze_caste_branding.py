@@ -274,6 +274,54 @@ TAXONOMY: List[Dict[str, Any]] = [
             "patil": ["patil"],
         },
     },
+    # v3 (frozen 2026-08-31, before the Varanasi/Delhi/Kolkata collections):
+    # North and East caste surnames with clear linkage. Pan-caste names
+    # (Singh, Das, Verma, Kumar, Ram, Devi) are deliberately excluded: they
+    # spread across categories and would mostly add noise.
+    {
+        "label": "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)",
+        "group": "surname_title",
+        "terms": {
+            "mishra": ["mishra", "misra"],
+            "tiwari": ["tiwari", "tewari"],
+            "pandey": ["pandey", "pande", "panday"],
+            "dubey": ["dubey", "dube", "dwivedi"],
+            "shukla": ["shukla"],
+            "trivedi": ["trivedi"],
+            "chaturvedi": ["chaturvedi"],
+            "upadhyay": ["upadhyay", "upadhyaya"],
+            "pandit": ["pandit", "panditji"],
+        },
+    },
+    {
+        "label": "Kayastha surnames (Srivastava/Saxena)",
+        "group": "surname_title",
+        "terms": {
+            "srivastava": ["srivastava", "shrivastava", "srivastav"],
+            "saxena": ["saxena"],
+        },
+    },
+    {
+        "label": "Bengali Brahmin surnames (Chatterjee/Banerjee/Mukherjee/...)",
+        "group": "surname_title",
+        "terms": {
+            "chatterjee": ["chatterjee", "chattopadhyay", "chatterji"],
+            "banerjee": ["banerjee", "bandyopadhyay", "banerji"],
+            "mukherjee": ["mukherjee", "mukhopadhyay", "mukherji"],
+            "bhattacharya": ["bhattacharya", "bhattacharjee", "bhattacharyya"],
+            "ganguly": ["ganguly", "gangopadhyay"],
+        },
+    },
+    {
+        "label": "Bengali Kayastha/Baidya surnames (Bose/Sen/Mitra/Dutta)",
+        "group": "surname_title",
+        "terms": {
+            "bose": ["bose", "basu"],
+            "sen": ["sen"],
+            "mitra": ["mitra"],
+            "dutta": ["dutta", "dutt", "datta"],
+        },
+    },
     {
         "label": "Naik/Nayak",
         "group": "surname_title",
