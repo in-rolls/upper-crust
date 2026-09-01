@@ -1,0 +1,5 @@
+group,count,n,p,ci_low,ci_high
+surname_title,25,940,0.026596,0.018078,0.038967
+merchant_community,13,940,0.013830,0.008100,0.023517
+upper_caste,1,940,0.001064,0.000188,0.006001
+regional,1,940,0.001064,0.000188,0.006001

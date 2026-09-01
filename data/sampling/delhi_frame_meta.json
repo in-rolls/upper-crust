@@ -1,0 +1,20 @@
+{
+  "city": "NCT of Delhi",
+  "gadm": "4.1/IND/level1",
+  "road_types": [
+    "trunk",
+    "primary",
+    "secondary",
+    "tertiary",
+    "unclassified",
+    "residential"
+  ],
+  "segment_m": 500.0,
+  "frame_segments": 123653,
+  "n_sampled": 400,
+  "seed": 42,
+  "radius_m": 300.0,
+  "overpass_archive": "nct of delhi_overpass_roads.json.gz",
+  "overpass_query": "bbox+quadrant fallback, types ^(trunk|primary|secondary|tertiary|unclassified|residential)$, timeout 600",
+  "generated_at": "2026-09-01T02:56:49+00:00"
+}

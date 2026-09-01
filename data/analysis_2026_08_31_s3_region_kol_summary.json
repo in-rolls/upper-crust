@@ -1,0 +1,94 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_vns_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_kol_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s3"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_vns_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_kol_raw_collection.jsonl"
+    ],
+    "git_commit": "be480fe",
+    "timestamp": "2026-09-01T02:53:14+00:00"
+  },
+  "n_entities": 3768,
+  "n_places": 3768,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 22,
+  "capture_recapture": null,
+  "group_counts": {
+    "surname_title": 41,
+    "merchant_community": 35,
+    "regional": 18
+  },
+  "label_counts": {
+    "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)": 9,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 10,
+    "Gupta": 31,
+    "Marwari": 1,
+    "Jain": 1,
+    "Bengali Kayastha/Baidya surnames (Bose/Sen/Mitra/Dutta)": 8,
+    "Other languages": 16,
+    "Naik/Nayak": 1,
+    "Udupi cuisine": 2,
+    "Agarwal/Agrawal": 2,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 7,
+    "Bengali Brahmin surnames (Chatterjee/Banerjee/Mukherjee/...)": 5,
+    "Rao": 1
+  },
+  "term_counts": {
+    "pandit": 3,
+    "thakur": 3,
+    "gupta": 31,
+    "marwari": 1,
+    "dubey": 2,
+    "jain": 1,
+    "dutta": 1,
+    "punjabi": 12,
+    "yadav": 7,
+    "tiwari": 3,
+    "mitra": 5,
+    "gujarati": 4,
+    "naik": 1,
+    "bose": 2,
+    "pandey": 1,
+    "udupi": 2,
+    "agarwal": 2,
+    "sharma": 7,
+    "mukherjee": 2,
+    "banerjee": 1,
+    "chatterjee": 2,
+    "rao": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "surname_title",
+      "count": 41,
+      "n": 3768,
+      "p": 0.010881104033970275,
+      "ci_low": 0.008031146345947097,
+      "ci_high": 0.01472739155235701
+    },
+    {
+      "group": "merchant_community",
+      "count": 35,
+      "n": 3768,
+      "p": 0.009288747346072187,
+      "ci_low": 0.0066865268970702435,
+      "ci_high": 0.012890541238558782
+    },
+    {
+      "group": "regional",
+      "count": 18,
+      "n": 3768,
+      "p": 0.004777070063694267,
+      "ci_low": 0.0030238916563698655,
+      "ci_high": 0.007539012151679764
+    }
+  ]
+}

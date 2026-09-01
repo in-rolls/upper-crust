@@ -1,0 +1,92 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_del_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s3"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_del_raw_collection.jsonl"
+    ],
+    "git_commit": "be480fe",
+    "timestamp": "2026-09-01T03:00:25+00:00"
+  },
+  "n_entities": 4009,
+  "n_places": 4009,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 1,
+  "capture_recapture": null,
+  "group_counts": {
+    "surname_title": 68,
+    "merchant_community": 57,
+    "regional": 60
+  },
+  "label_counts": {
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 21,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 20,
+    "Rao": 2,
+    "Gupta": 33,
+    "Other languages": 58,
+    "Agarwal/Agrawal": 14,
+    "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)": 18,
+    "Bengali Kayastha/Baidya surnames (Bose/Sen/Mitra/Dutta)": 2,
+    "Udupi cuisine": 2,
+    "Jain": 9,
+    "Reddy": 1,
+    "Bengali Brahmin surnames (Chatterjee/Banerjee/Mukherjee/...)": 4,
+    "Marwari": 1
+  },
+  "term_counts": {
+    "yadav": 17,
+    "sharma": 18,
+    "rao": 2,
+    "gupta": 33,
+    "punjabi": 52,
+    "agarwal": 14,
+    "pandit": 13,
+    "pandey": 3,
+    "thakur": 3,
+    "gujarati": 3,
+    "mitra": 2,
+    "udupi": 2,
+    "kerala": 3,
+    "jain": 9,
+    "reddy": 1,
+    "dixit": 1,
+    "mukherjee": 4,
+    "sastry": 1,
+    "khatri": 1,
+    "mishra": 1,
+    "tiwari": 1,
+    "marwari": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "surname_title",
+      "count": 68,
+      "n": 4009,
+      "p": 0.01696183586929409,
+      "ci_low": 0.013402268212019128,
+      "ci_high": 0.021446254091976126
+    },
+    {
+      "group": "regional",
+      "count": 60,
+      "n": 4009,
+      "p": 0.014966325767024195,
+      "ci_low": 0.011645316390940037,
+      "ci_high": 0.019216006418313135
+    },
+    {
+      "group": "merchant_community",
+      "count": 57,
+      "n": 4009,
+      "p": 0.014218009478672985,
+      "ci_low": 0.010990633199808211,
+      "ci_high": 0.01837548979891668
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_vns_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_kol_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s3"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_vns_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_kol_raw_collection.jsonl"
+    ],
+    "git_commit": "be480fe",
+    "timestamp": "2026-09-01T02:53:14+00:00"
+  },
+  "n_entities": 940,
+  "n_places": 940,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 0,
+  "capture_recapture": null,
+  "group_counts": {
+    "surname_title": 25,
+    "merchant_community": 13,
+    "upper_caste": 1,
+    "regional": 1
+  },
+  "label_counts": {
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 22,
+    "Gupta": 11,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 1,
+    "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)": 2,
+    "Brahmin (general)": 1,
+    "Other languages": 1,
+    "Jain": 1,
+    "Agarwal/Agrawal": 1
+  },
+  "term_counts": {
+    "yadav": 16,
+    "gupta": 11,
+    "sharma": 1,
+    "patel": 6,
+    "dubey": 1,
+    "brahmin": 1,
+    "andhra": 1,
+    "jain": 1,
+    "pandey": 1,
+    "agarwal": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "surname_title",
+      "count": 25,
+      "n": 940,
+      "p": 0.026595744680851064,
+      "ci_low": 0.018078299261108356,
+      "ci_high": 0.0389668659445787
+    },
+    {
+      "group": "merchant_community",
+      "count": 13,
+      "n": 940,
+      "p": 0.013829787234042552,
+      "ci_low": 0.008099705972633348,
+      "ci_high": 0.02351746368803853
+    },
+    {
+      "group": "upper_caste",
+      "count": 1,
+      "n": 940,
+      "p": 0.0010638297872340426,
+      "ci_low": 0.00018781193815070553,
+      "ci_high": 0.006001362177505989
+    },
+    {
+      "group": "regional",
+      "count": 1,
+      "n": 940,
+      "p": 0.0010638297872340426,
+      "ci_low": 0.00018781193815070553,
+      "ci_high": 0.006001362177505989
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_maa2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_jai_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s3"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_maa2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_jai_raw_collection.jsonl"
+    ],
+    "git_commit": "be480fe",
+    "timestamp": "2026-09-01T02:53:28+00:00"
+  },
+  "n_entities": 5025,
+  "n_places": 5025,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 2,
+  "capture_recapture": null,
+  "group_counts": {
+    "regional": 127,
+    "surname_title": 22,
+    "merchant_community": 9,
+    "upper_caste": 2
+  },
+  "label_counts": {
+    "Other languages": 59,
+    "Chettinad cuisine": 63,
+    "Udupi cuisine": 4,
+    "Tamil caste surnames (Pillai/Mudaliar/Nadar/Gounder/Thevar/Naicker/Pandian)": 12,
+    "Rao": 1,
+    "Chettiar (Tamil merchant)": 3,
+    "Iyer (Tamil Brahmin)": 1,
+    "Naidu": 5,
+    "Gupta": 4,
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 3,
+    "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)": 1,
+    "Kodava / Coorg": 1,
+    "Iyengar (Tamil Brahmin)": 1,
+    "Jain": 1,
+    "Agarwal/Agrawal": 1
+  },
+  "term_counts": {
+    "kerala": 8,
+    "andhra": 40,
+    "chettinad": 63,
+    "tamil": 6,
+    "udupi": 4,
+    "pandian": 10,
+    "rao": 1,
+    "chettiar": 3,
+    "iyer": 1,
+    "naidu": 5,
+    "gupta": 4,
+    "sastry": 3,
+    "punjabi": 4,
+    "pillai": 1,
+    "dubey": 1,
+    "coorg": 1,
+    "thevar": 1,
+    "malayali": 1,
+    "iyengar": 1,
+    "jain": 1,
+    "agarwal": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "regional",
+      "count": 127,
+      "n": 5025,
+      "p": 0.02527363184079602,
+      "ci_low": 0.021283072692430363,
+      "ci_high": 0.02998949075438808
+    },
+    {
+      "group": "surname_title",
+      "count": 22,
+      "n": 5025,
+      "p": 0.004378109452736319,
+      "ci_low": 0.00289306895190826,
+      "ci_high": 0.0066203744621774
+    },
+    {
+      "group": "merchant_community",
+      "count": 9,
+      "n": 5025,
+      "p": 0.001791044776119403,
+      "ci_low": 0.0009425684691956547,
+      "ci_high": 0.003400698178932614
+    },
+    {
+      "group": "upper_caste",
+      "count": 2,
+      "n": 5025,
+      "p": 0.0003980099502487562,
+      "ci_low": 0.00010915318571948283,
+      "ci_high": 0.0014501721268932665
+    }
+  ]
+}

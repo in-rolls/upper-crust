@@ -1,0 +1,4 @@
+group,count,n,p,ci_low,ci_high
+surname_title,61,1855,0.032884,0.025685,0.042014
+merchant_community,35,1855,0.018868,0.013598,0.026127
+regional,6,1855,0.003235,0.001483,0.007039

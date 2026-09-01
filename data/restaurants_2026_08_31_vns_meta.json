@@ -1,0 +1,17 @@
+{
+  "region_id": "vns",
+  "api": "places_new",
+  "cells_covered": 400,
+  "queries_attempted": 400,
+  "requests_made": 400,
+  "capped_queries": 19,
+  "languages": [
+    "en"
+  ],
+  "sampling": "points",
+  "radius_m": 300,
+  "errors": [],
+  "points_csv": "data/sampling/varanasi_segments_n400_seed42.csv",
+  "points_used": 400,
+  "region_name": "Varanasi"
+}

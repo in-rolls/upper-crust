@@ -1,0 +1,90 @@
+{
+  "invocation": {
+    "argv": [
+      "scripts/analyze_caste_branding.py",
+      "--inputs",
+      "data/restaurants_2026_08_31_maa2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_jai_raw_collection.jsonl",
+      "--basepath",
+      "data/analysis_2026_08_31_s3"
+    ],
+    "inputs": [
+      "data/restaurants_2026_08_31_maa2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_mys2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_blr2_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_lko_raw_collection.jsonl",
+      "data/restaurants_2026_08_31_jai_raw_collection.jsonl"
+    ],
+    "git_commit": "be480fe",
+    "timestamp": "2026-09-01T02:53:28+00:00"
+  },
+  "n_entities": 1771,
+  "n_places": 1771,
+  "n_osm": 0,
+  "n_linked_across_sources": 0,
+  "n_unscorable_after_transliteration": 0,
+  "capture_recapture": null,
+  "group_counts": {
+    "surname_title": 39,
+    "regional": 10,
+    "merchant_community": 17
+  },
+  "label_counts": {
+    "Acharya/Jois/Sharma/Murthy/Sastry/Kulkarni/Joshi/Dixit": 27,
+    "Other languages": 10,
+    "Agarwal/Agrawal": 7,
+    "UP/Bihar Brahmin surnames (Mishra/Tiwari/Pandey/...)": 7,
+    "Jain": 5,
+    "Gupta": 2,
+    "Rao": 1,
+    "Naik/Nayak": 1,
+    "Marwari": 3,
+    "North/West caste surnames (Yadav/Thakur/Khatri/Patel/Patil)": 2,
+    "Bengali Kayastha/Baidya surnames (Bose/Sen/Mitra/Dutta)": 1
+  },
+  "term_counts": {
+    "sharma": 27,
+    "punjabi": 5,
+    "agarwal": 7,
+    "tiwari": 1,
+    "jain": 5,
+    "pandit": 6,
+    "gupta": 2,
+    "kerala": 4,
+    "rao": 1,
+    "naik": 1,
+    "marwari": 3,
+    "yadav": 2,
+    "gujarati": 1,
+    "mitra": 1
+  },
+  "group_prevalence": [
+    {
+      "group": "surname_title",
+      "count": 39,
+      "n": 1771,
+      "p": 0.0220214568040655,
+      "ci_low": 0.016150554744258146,
+      "ci_high": 0.029961503931851326
+    },
+    {
+      "group": "merchant_community",
+      "count": 17,
+      "n": 1771,
+      "p": 0.009599096555618294,
+      "ci_low": 0.00600177378597671,
+      "ci_high": 0.015319340165826086
+    },
+    {
+      "group": "regional",
+      "count": 10,
+      "n": 1771,
+      "p": 0.00564652738565782,
+      "ci_low": 0.003069943329900417,
+      "ci_high": 0.010363142755077534
+    }
+  ]
+}
