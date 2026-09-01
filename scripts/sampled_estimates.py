@@ -48,6 +48,16 @@ def main() -> None:
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
 
+    exclusions = set()
+    try:
+        import csv as _csv
+
+        with open("data/match_exclusions.csv", encoding="utf-8") as _f:
+            for _row in _csv.DictReader(_f):
+                exclusions.add((_row["name_normalized"], _row["term"]))
+    except FileNotFoundError:
+        pass
+
     genuine = {}
     for v in read_jsonl(args.adjudication):
         if v["task"] == "verify_match":
@@ -67,6 +77,8 @@ def main() -> None:
     for r in rows:
         coded_groups = set()
         for mt in r["matches"]:
+            if (r["name_normalized"], mt["term"]) in exclusions:
+                continue
             key = f"A:{r['name_normalized']}:{mt['label']}"
             if key not in genuine:
                 missing += 1

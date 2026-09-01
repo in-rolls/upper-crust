@@ -75,6 +75,16 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    exclusions = set()
+    try:
+        import csv as _csv
+
+        with open("data/match_exclusions.csv", encoding="utf-8") as _f:
+            for _row in _csv.DictReader(_f):
+                exclusions.add((_row["name_normalized"], _row["term"]))
+    except FileNotFoundError:
+        pass
+
     verdicts = read_jsonl(args.adjudication)
     genuine: Dict[str, bool] = {}
     screen: Dict[str, Dict[str, Any]] = {}
@@ -106,6 +116,8 @@ def main() -> None:
                 unmatched.append(r)
                 continue
             for mt in r["matches"]:
+                if (r["name_normalized"], mt["term"]) in exclusions:
+                    continue
                 flagged_ids[mt["group"]].add(r["place_id"])
                 key = f"A:{r['name_normalized']}:{mt['label']}"
                 if key not in genuine:
